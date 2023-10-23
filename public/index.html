@@ -8,10 +8,32 @@
 </head>
 <body>
 
-    <h2>Hello World</h2>
+    <div id="app">
+        <div id="chat-window">
+            <div id="output"></div>
+            <div id="feedback"></div>
+        </div>
+        <input type="text" placeholder="Name" id="name"/>
+        <input type="text" placeholder="Message" id="message"/>
+        <button id="send">Send</button>
+    </div>
+
     
     <script>
         const socket = io('http://localhost:4000');
+        let output = document.getElementById('output');
+        let feedback = document.getElementById('feedback');
+        let name = document.getElementById('name');
+        let message = document.getElementById('message');
+        let send = document.getElementById('send');
+
+        send.addEventListener('click', function() {
+            let data = {
+                name: name.value,
+                message: message.value
+            };
+            socket.emit('chat',data);
+        })
     </script>
 </body>
 </html>
