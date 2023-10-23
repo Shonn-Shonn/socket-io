@@ -34,6 +34,12 @@
             };
             socket.emit('chat',data);
         })
+
+        socket.on('chat', (data) => {
+            output.innerHTML += `<p>${data.name}<strong>${data.message}</strong></p>`;
+            name.value = "";
+            message.value = "";
+        })
     </script>
 </body>
 </html>
